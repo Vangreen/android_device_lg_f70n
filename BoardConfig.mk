@@ -56,8 +56,8 @@ TARGET_BOOTLOADER_BOARD_NAME := f70n
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_CUSTOM_BOOTIMG_MK := device/lge/f70n/mkbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/lge/msm8226
-TARGET_KERNEL_CONFIG := w7ds_cyanogenmod_defconfig
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 msm_rtb.filter=0x37 androidboot.hardware=w7 androidboot.selinux=enforcing
+TARGET_KERNEL_CONFIG := f70n_cm_defconfig
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 msm_rtb.filter=0x37 androidboot.hardware=f70n androidboot.selinux=enforcing
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
@@ -100,7 +100,7 @@ PROTOBUF_SUPPORTED := true
 TARGET_NO_RPC := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/w7/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/f70n/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
@@ -135,7 +135,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # TWRP Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
-TARGET_RECOVERY_FSTAB := device/lge/w7/rootdir/fstab.f70n
+TARGET_RECOVERY_FSTAB := device/lge/f70n/rootdir/fstab.f70n
 RECOVERY_FSTAB_VERSION := 2
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 DEVICE_RESOLUTION := 540x960
