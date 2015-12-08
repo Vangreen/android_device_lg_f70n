@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!--
+    VIVO_BR(Vivo / Brazil)
+    CLR_BR(Claro / Brazil)
+    TIM_BR(TIM / Brazil)
+    OI_BR(OI / Brazil)
+    -->
+    <Config operator="" country="BR" device="">
+    </Config>
+</Configure>

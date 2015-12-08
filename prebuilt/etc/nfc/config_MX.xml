@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!--
+    TCL_MK(Telcel /Mexio)
+    -->
+    <Config operator="" country="MX" device="">
+    </Config>
+</Configure>

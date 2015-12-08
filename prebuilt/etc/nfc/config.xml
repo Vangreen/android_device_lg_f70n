@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <Config operator="" country="" device="">
+        <!-- INITVALUE, three_toggleV1L, three_toggleV2L, three_toggleV2C, two_toggleN, two_toggleL -->
+        <!-- three_toggleV1L_tonedown, three_toggleV2L_tonedown, three_toggleV2C_tonedown, two_toggleN_tonedown, two_toggleL_tonedown -->
+        <IndicatorType> two_toggleN </IndicatorType>
+        <IndicatorType TargetModel="zee"> two_toggleN_tonedown </IndicatorType>
+
+        <!-- INITVALUE, usevibrate, onlyndefdiscovered -->
+        <RingSoundScenarioType> INITVALUE </RingSoundScenarioType>
+
+        <!-- INITVALUE, stay, update -->
+        <WCScenarioEnable> INITVALUE </WCScenarioEnable>
+
+        <!-- INITVALUE, icsjb -->
+        <OSComparabilityType> INITVALUE </OSComparabilityType>
+
+        <!-- INITVALUE, uicc, ese -->
+        <SecureElementType> uicc </SecureElementType>
+
+        <!--INITVALUE, googlenative, directbeam, directbeam_mtkbt, mtkbt, WPSHandover, autoapplaunch (overlap possible (divide "," sign)) -->
+        <HandoverSupportType> googlenative </HandoverSupportType>
+
+        <!-- INITVALUE, off, offp2p, oncardrwp2p, oncard, oncardrw, oncardp2p, onrwp2p, open -->
+        <DefaultOnOffType> oncardrwp2p </DefaultOnOffType>
+
+        <!-- INITVALUE, vzw, gsma -->
+        <PopupDialogType> gsma </PopupDialogType>
+
+        <!-- INITVALUE, all, rwp2p -->
+        <PowerSaveType> INITVALUE </PowerSaveType>
+
+        <!-- INITVALUE, egw, gw, st, egwst, gwst -->
+        <SupportWalletType> INITVALUE </SupportWalletType>
+
+        <!--apply Access Control routine, verifying access right to the apk through Access Control Manager-->
+        <AccessControlEnable> true </AccessControlEnable> <!-- default value is true -->
+        <TransactionAIDEnable> false </TransactionAIDEnable>
+
+        <!--apply Execution Environment routing according to screen state
+         in SCREEN_LOCK/SCREEN_OFF, card mode is disabled.
+         this feature has dependency with isis/sequent wallet.-->
+        <NfcEERoutingEnable> false </NfcEERoutingEnable>
+
+        <DisableInPowerOffEnable> false </DisableInPowerOffEnable>
+
+        <!--control feasibility of CE mode in Low power mode (after power-off)
+         if 'true', card emulation mode is still available even after the phone is powered-off.
+         if 'false', card emulation doesn't work anymore until the phone is powered-up again.-->
+        <CardEnableInPowerOff> true </CardEnableInPowerOff> <!-- default value is true -->
+
+        <!--extracts card mode activation process from initialization process during init/de-init process,
+         card mode is not controlled separately. card mode enabler looses card mode control.
+         so far, google wallet only needs this feature-->
+        <AsyncCardControlEnable> false </AsyncCardControlEnable>
+
+        <!--MUST BE APPLIED to all LGE NFC devices-->
+        <VendorStablePatch> true </VendorStablePatch> <!-- default value is true -->
+
+        <!--P2P receive function enabled/disabled together with RW enabled/disabled
+         google scenario is, NDEF push and get are controlled seperately.
+         so, "true" shoud be strongly recommended except for specific scenario-->
+        <RwP2pServerSyncEnable> true </RwP2pServerSyncEnable> <!-- default value is true -->
+
+        <!--this feature is for beam ui finish when alart UI(Calling, Alarm etc..)-->
+        <BeamUIFinishwhenAlertUIView> true </BeamUIFinishwhenAlertUIView> <!-- default value is true -->
+
+        <!--enable se-broadcasting only for NFC-permitted(NFC_PERM) applications
+         this feature came from ISIS requirement. so, the model requiring ISIS certi, should apply this feature-->
+        <PermittedSeBroadcastEnable> true </PermittedSeBroadcastEnable> <!-- default value is true -->
+
+        <!--NFC Empty Tag popup Dialog Scenario for ORG when Positve/Negative Detection,
+         PopupDialog will be display and offer link to play store-->
+        <EmptyPopupSupport> true </EmptyPopupSupport>
+
+        <!--Lock Screen Polling Enable Feature.-->
+        <LockScreenPollingEnable> false </LockScreenPollingEnable>
+
+        <NotifyonlyValidTag> true </NotifyonlyValidTag> <!-- default value is true -->
+
+        <SePatchEnabled> false </SePatchEnabled>
+
+        <TagLongTimePopupSupport> true </TagLongTimePopupSupport>
+
+        <MccMncSupport>false</MccMncSupport>
+        <MccMncSupport TargetModel="l50"> true </MccMncSupport>
+
+        <!-- feature for Advenced HCE settings -->
+        <AdvancedHCEEnable> false </AdvancedHCEEnable>
+
+        <!--  feature for HCE onHost Enable -->
+        <HCEOnHostEnable> false </HCEOnHostEnable>
+
+        <!-- feature for nxp stack library -->
+        <!-- determine which HCI event type is supported INITVALUE, rffieldoff (EVT_FIELD_ON/OFF events not supported) -->
+        <HCIEventConfig> INITVALUE </HCIEventConfig>
+
+        <!-- apply volatile card configuration -->
+        <VolatileCardModeEnable> false </VolatileCardModeEnable>
+
+        <!-- B' type among UICC CE types is enable/disable -->
+        <UICCBPrimeEnable> false </UICCBPrimeEnable>
+
+        <!-- NXP Config File Name -->
+        <NxpConfigFileName> libnfc-nxp.conf </NxpConfigFileName>
+    </Config>
+</Configure>

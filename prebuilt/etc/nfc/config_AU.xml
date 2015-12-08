@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!--
+    OPT_AU(Optus / Australia)
+    -->
+    <Config operator="" country="AU" device="">
+    </Config>
+    <!-- Telstra / Australia -->
+    <Config operator="TEL" country="AU" device="">
+        <DefaultOnOffType> off </DefaultOnOffType>
+        <AccessControlEnable> false </AccessControlEnable>
+        <NfcEERoutingEnable> true </NfcEERoutingEnable>
+    </Config>
+</Configure>

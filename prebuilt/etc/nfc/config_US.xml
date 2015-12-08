@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!-- T-Mobile / United States -->
+    <Config operator="" country="US" device="">
+    </Config>
+    <!-- AT&T / United States -->
+    <Config operator="ATT" country="US" device="">
+        <NxpAR22Enable TargetModel="jagnm"> true </NxpAR22Enable>
+        <NxpAR22Enable TargetModel="b2l"> true </NxpAR22Enable>
+    </Config>
+    <!-- Sprint / United States -->
+    <Config operator="SPR" country="US" device="">
+        <SecureElementType> ese </SecureElementType>
+        <AccessControlEnable> false </AccessControlEnable>
+        <PermittedSeBroadcastEnable> false </PermittedSeBroadcastEnable>
+        <AdvancedHCEEnable> false </AdvancedHCEEnable>
+    </Config>
+    <!-- Verizon / United States -->
+    <Config operator="VZW" country="US" device="">
+        <WCScenarioEnable> update </WCScenarioEnable>
+        <DefaultOnOffType> offp2p </DefaultOnOffType>
+        <RingSoundScenarioType> usevibrate </RingSoundScenarioType>
+        <PopupDialogType> vzw </PopupDialogType>
+        <NfcEERoutingEnable> true </NfcEERoutingEnable>
+        <EmptyPopupSupport> false </EmptyPopupSupport>
+        <AccessControlEnable> false </AccessControlEnable>
+        <NxpAR22Enable> true </NxpAR22Enable>
+    </Config>
+</Configure>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Profiles>
+    <!-- Default -->
+    <network mcc="" mnc="" long_name="" short_name="">
+        <DefaultOnOffType> oncardrwp2p </DefaultOnOffType>
+        </network>
+
+    <!-- AL : Albania -->
+    <network mcc="276" mnc="XX" long_name="Albania" short_name="Albania">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        </network>
+    <network mcc="276" mnc="02" long_name="vodafone AL" short_name="Vodafone">
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (VDL) -->
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- AT : Austria -->
+    <network mcc="232" mnc="XX" long_name="Austria" short_name="Austria">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetOperator="H3G"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetOperator="ORG"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="g2m" TargetOperator="H3G"> oncardrwp2p </DefaultOnOffType>
+        </network>
+    <network mcc="232" mnc="01" long_name="A1" short_name="A1">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- BE : Belgium -->
+    <network mcc="206" mnc="XX" long_name="Belgium" short_name="Belgium">
+        <DefaultOnOffType TargetModel="w5n" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="g2m" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="l9ii" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        </network>
+    <network mcc="206" mnc="01" long_name="BEL PROXIMUS" short_name="Proximus">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- CY : Cyprus -->
+    <network mcc="280" mnc="XX" long_name="Cyprus" short_name="Cyprus">
+        <DefaultOnOffType TargetModel="w5n" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="g2m" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="l9ii" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        </network>
+    <network mcc="280" mnc="01" long_name="CytaVoda" short_name="Cytamobile-Vodafone">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- FR : France -->
+    <network mcc="208" mnc="XX" long_name="France" short_name="France">
+        <DefaultOnOffType TargetOperator="NRJ"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        </network>
+    <network mcc="208" mnc="10" long_name="F SFR" short_name="SFR">
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (LA POSTE MOBILE) -->
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <network mcc="208" mnc="15" long_name="Free France" short_name="FRE">
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (FRE) -->
+        </network>
+    <!-- RE : France Reunion -->
+    <network mcc="647" mnc="10" long_name="SFR RU" short_name="SFR Reunion">
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (SRR)-->
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- DE : Germany -->
+    <network mcc="262" mnc="XX" long_name="Germany" short_name="Germany">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        </network>
+    <network mcc="262" mnc="02" long_name="Vodafone.de" short_name="Vodafone">
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (VD2)-->
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- GR : Greece-->
+    <network mcc="202" mnc="XX" long_name="Greece" short_name="Greece">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        </network>
+    <network mcc="202" mnc="05" long_name="Vodafone GR" short_name="Vodafone">
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (VDX) -->
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- HU : Hungary -->
+    <network mcc="216" mnc="XX" long_name="Hungary" short_name="Hungary">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        </network>
+    <network mcc="216" mnc="01" long_name="Telenor HU" short_name="Pannon">
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (PNN)-->
+        </network>
+    <network mcc="216" mnc="70" long_name="vodafone HU" short_name="Vodafone">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- IS : Iceland -->
+    <network mcc="274" mnc="XX" long_name="Iceland" short_name="Iceland">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="w5n" TargetOperator="VDF"> oncardrwp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="g2m" TargetOperator="VDF"> oncardrwp2p </DefaultOnOffType>
+        </network>
+    <!-- MT : Malta -->
+    <network mcc="278" mnc="01" long_name="vodafone MT" short_name="Vodafone">
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (VDM)-->
+        <DefaultOnOffType TargetOperator="VDF"> oncardrwp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- NL : Netherland -->
+    <network mcc="204" mnc="XX" long_name="Nederland" short_name="Nederland">
+        <DefaultOnOffType TargetOperator="TMO"> offp2p </DefaultOnOffType>
+        </network>
+    <!-- RO : Romania -->
+    <network mcc="226" mnc="XX" long_name="Romania" short_name="Romania">
+        <DefaultOnOffType TargetOperator="TMO"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="g2m" TargetOperator="TMO"> oncardrwp2p </DefaultOnOffType>
+        </network>
+    <!-- ES : Spain -->
+    <network mcc="214" mnc="03" long_name="Orange" short_name="Orange"> <!-- Carrefour -->
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (Carrefour) -->
+        <DefaultOnOffType TargetOperator="ORG"> oncardrwp2p </DefaultOnOffType> <!-- ORG_Global -->
+        </network>
+    <network mcc="214" mnc="06" long_name="Vodafone Spain" short_name="Vodafone"> <!-- Eroski Movil / R_CABLE / Telecable-->
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (EROSKI_MOVIL/R_CABLE/TELECABLE)-->
+        </network>
+    <network mcc="214" mnc="07" long_name="Movistar" short_name="Movistar"> <!-- Telefonica-->
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (TLF/JAZZTEL) -->
+        </network>
+    <network mcc="214" mnc="19" long_name="Simyo" short_name="Simyo"> <!-- KPN -->
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (KPS) -->
+        </network>
+    <network mcc="214" mnc="21" long_name="Jazztel" short_name="Jazztel"> <!-- Jazztel -->
+        <DefaultOnOffType> offp2p </DefaultOnOffType> <!-- OPEN_Global (JAZZTEL) -->
+        </network>
+    <!-- SE : Sweden -->
+    <network mcc="240" mnc="XX" long_name="Sweden" short_name="Sweden">
+        <DefaultOnOffType TargetOperator="H3G"> offp2p </DefaultOnOffType>
+        </network>
+    <!-- South Africa -->
+    <network mcc="655" mnc="XX" long_name="South Africa" short_name="South Africa">
+        <DefaultOnOffType TargetModel="w5n" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="g2m" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="l9ii" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        </network>
+    <network mcc="655" mnc="01" long_name="VODA" short_name="Vodacom">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+    <!-- UK : United Kingdom -->
+    <network mcc="234" mnc="XX" long_name="United Kingdom" short_name="United Kingdom">
+        <DefaultOnOffType TargetModel="w5n" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="g2m" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        <DefaultOnOffType TargetModel="l9ii" TargetOperator="VDF"> offp2p </DefaultOnOffType>
+        </network>
+    <network mcc="234" mnc="15" long_name="vodafone UK" short_name="Vodafone">
+        <DefaultOnOffType TargetOperator="VDF"> offp2p </DefaultOnOffType> <!-- VDF_Global -->
+        </network>
+</Profiles>

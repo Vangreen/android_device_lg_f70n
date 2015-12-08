@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!-- Rogers / Canada -->
+    <Config operator="" country="CA" device="">
+    </Config>
+    <!-- Telus / Canada -->
+    <Config operator="TLS" country="CA" device="">
+        <AccessControlEnable> false </AccessControlEnable>
+    </Config>
+    <!-- Bell / Canada -->
+    <Config operator="BELL" country="CA" device="">
+        <DefaultOnOffType> off </DefaultOnOffType>
+    </Config>
+    <!-- Wind / Canada -->
+    <Config operator="WIN" country="CA" device="">
+        <DefaultOnOffType> off </DefaultOnOffType>
+    </Config>
+    <!-- Videotron / Canada -->
+    <Config operator="VTR" country="CA" device="">
+        <DefaultOnOffType> off </DefaultOnOffType>
+    </Config>
+</Configure>

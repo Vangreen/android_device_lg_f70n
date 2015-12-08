@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!--
+    OPEN_CN ( Open / China )
+    -->
+    <Config operator="" country="CN" device="">
+    </Config>
+    <!--
+    CMCC_CN ( ChinaMobile / China )
+    -->
+    <Config operator="CMCC" country="CN" device="">
+        <IndicatorType> three_toggleV1L </IndicatorType>
+        <PermittedSeBroadcastEnable> false </PermittedSeBroadcastEnable>
+    </Config>
+    <!--
+    CT_CN ( ChinaTelecom / China )
+    -->
+    <Config operator="CTC" country="CN" device="">
+        <IndicatorType> three_toggleV1L </IndicatorType>
+        <PermittedSeBroadcastEnable> false </PermittedSeBroadcastEnable>
+    </Config>
+    <!--
+    CU_CN ( ChinaUnicom / China )
+    -->
+    <Config operator="CUCC" country="CN" device="">
+        <IndicatorType> three_toggleV1L </IndicatorType>
+        <PermittedSeBroadcastEnable> false </PermittedSeBroadcastEnable>
+    </Config>
+</Configure>

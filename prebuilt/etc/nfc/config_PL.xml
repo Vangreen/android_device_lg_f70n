@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!--
+    PLS_PL(Plus / Poland)
+    -->
+    <Config operator="" country="PL" device="">
+    </Config>
+    <!-- P4(Play) / Poland -->
+    <Config operator="P4P" country="PL" device="">
+        <DefaultOnOffType> offp2p </DefaultOnOffType>
+    </Config>
+</Configure>

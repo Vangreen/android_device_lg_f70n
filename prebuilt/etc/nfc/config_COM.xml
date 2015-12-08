@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!-- Default -->
+    <!--
+    OPEN_XXX
+
+    OPEN_EU(Europe)
+    OPEN_VNM(Vietnam)
+    OPEN_MYS(Malaysia)
+    OPEN_CIS
+    OPEN_TW(Taiwan)
+    OPEN_ZAF(South Africa)
+    OPEN_SCA(South Centrl America)
+    OPEN_HK(Hongkong)
+    OPEN_ESA(East South Asia)
+    OPEN_AME(Middle East Asia & Africa)
+     -->
+    <Config operator="" country="" device="">
+    </Config>
+
+    <!-- XXX_COM  -->
+    <Config operator="" country="COM" device="">
+        <DefaultOnOffType TargetModel="l50"> open </DefaultOnOffType>
+    </Config>
+    <!-- Vodafone / Open -->
+    <Config operator="VDF" country="COM" device="">
+        <DefaultOnOffType> open </DefaultOnOffType>
+    </Config>
+    <!-- Orange / Open -->
+    <Config operator="ORG" country="COM" device="">
+        <RingSoundScenarioType> usevibrate </RingSoundScenarioType>
+        <DefaultOnOffType> open </DefaultOnOffType>
+        <AdvancedHCEEnable TargetModel="f70n"> true </AdvancedHCEEnable>
+        <AdvancedHCEEnable TargetModel="g2m"> true </AdvancedHCEEnable>
+    </Config>
+    <!-- T-Mobile / Open -->
+    <Config operator="TMO" country="COM" device="">
+        <DefaultOnOffType> open </DefaultOnOffType>
+    </Config>
+    <!-- Hutchison / Open -->
+    <Config operator="H3G" country="COM" device="">
+        <DefaultOnOffType> open </DefaultOnOffType>
+    </Config>
+</Configure>

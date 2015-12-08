@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <Config operator="" country="JP" device="">
+        <DefaultOnOffType> offp2p </DefaultOnOffType>
+        <PopupDialogType> INITVALUE </PopupDialogType>
+        <AccessControlEnable> false </AccessControlEnable>
+        <DisableInPowerOffEnable> true </DisableInPowerOffEnable>
+        <PermittedSeBroadcastEnable> false </PermittedSeBroadcastEnable>
+        <EmptyPopupSupport> false </EmptyPopupSupport>
+    </Config>
+    <!-- NTT Docomo / Japan -->
+    <Config operator="DCM" country="JP" device="">
+        <DefaultOnOffType> offp2p </DefaultOnOffType>
+        <PopupDialogType> INITVALUE </PopupDialogType>
+        <AccessControlEnable> false </AccessControlEnable>
+        <DisableInPowerOffEnable> true </DisableInPowerOffEnable>
+        <PermittedSeBroadcastEnable> false </PermittedSeBroadcastEnable>
+        <EmptyPopupSupport> false </EmptyPopupSupport>
+    </Config>
+    <!-- KDDI / Japan -->
+    <Config operator="KDDI" country="JP" device="">
+        <IndicatorType TargetModel="tahiti"> two_toggleN_tonedown </IndicatorType>
+        <DefaultOnOffType> offp2p </DefaultOnOffType>
+        <PopupDialogType> INITVALUE </PopupDialogType>
+        <AccessControlEnable> false </AccessControlEnable>
+        <DisableInPowerOffEnable> true </DisableInPowerOffEnable>
+        <PermittedSeBroadcastEnable> false </PermittedSeBroadcastEnable>
+        <EmptyPopupSupport> false </EmptyPopupSupport>
+    </Config>
+</Configure>

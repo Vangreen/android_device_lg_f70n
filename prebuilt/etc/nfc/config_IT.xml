@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!--
+    TIM_IT(Telecom Italia Mobile / Italy)
+    WIN_IT(Wind / Italy)
+    -->
+    <Config operator="" country="IT" device="">
+    </Config>
+</Configure>

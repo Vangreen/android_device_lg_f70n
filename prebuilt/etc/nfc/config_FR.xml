@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!--
+    BYT_FR (BYT / France)
+    -->
+    <Config operator="" country="FR" device="">
+    </Config>
+    <!-- SFR_FR (SFR / France ) -->
+    <Config operator="SFR" country="FR" device="">
+        <DefaultOnOffType> offp2p </DefaultOnOffType>
+    </Config>
+</Configure>

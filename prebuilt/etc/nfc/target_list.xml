@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<TargetModel>
+    <Target> mako </Target>
+    <Target> hammerhead </Target>
+    <Target> g2 </Target>
+    <Target> vu3 </Target>
+    <Target> zee </Target>
+    <Target> w5n </Target>
+    <Target> w7n </Target>
+    <Target> w7dsn </Target>
+    <Target> x3n </Target>
+    <Target> f70n </Target>
+    <Target> x5 </Target>
+    <Target> g2m </Target>
+    <Target> g2mv </Target>
+    <Target> grey </Target>
+    <Target> l9ii </Target>
+    <Target> b1 </Target>
+    <Target> b1w </Target>
+    <Target> b2l </Target>
+    <Target> b2ln </Target>
+    <Target> jagn </Target>
+    <Target> jagnm </Target>
+    <Target> jagdsnm </Target>
+    <Target> x10 </Target>
+    <Target> g3 </Target>
+    <Target> liger </Target>
+    <Target> luv50ss </Target>
+    <Target> l50 </Target>
+</TargetModel>

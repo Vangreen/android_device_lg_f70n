@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no" ?>
+<Configure>
+    <!--
+    KT_KR(KT / Korea)
+    LGU_KR(LG Uplus / Korea)
+    -->
+    <Config operator="" country="KR" device="">
+        <IndicatorType> three_toggleV1L </IndicatorType>
+        <IndicatorType TargetModel="zee"> three_toggleV1L_tonedown </IndicatorType>
+        <RingSoundScenarioType> onlyndefdiscovered </RingSoundScenarioType>
+        <PowerSaveType> rwp2p </PowerSaveType>
+        <PopupDialogType> INITVALUE </PopupDialogType>
+        <AccessControlEnable> false </AccessControlEnable>
+        <LockScreenPollingEnable> true </LockScreenPollingEnable>
+        <PermittedSeBroadcastEnable> false </PermittedSeBroadcastEnable>
+        <EmptyPopupSupport> false </EmptyPopupSupport>
+    </Config>
+    <!-- OPEN_KR_awifi070u(Korea) -->
+    <Config operator="OPEN" country="KR" device="awifi070u">
+        <IndicatorType> three_toggleV2L </IndicatorType>
+        <SecureElementType> INITVALUE </SecureElementType>
+        <PowerSaveType> all </PowerSaveType>
+        <AccessControlEnable> false </AccessControlEnable>
+        <EmptyPopupSupport> false </EmptyPopupSupport>
+    </Config>
+</Configure>
