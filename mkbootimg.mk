@@ -4,7 +4,7 @@ LOCAL_PATH := $(call my-dir)
 ## on purpose, to avoid conflicts with similarly named variables at other
 ## parts of the build environment
 
-## Imported from the original makefile...
+## Imported from the original makefile....
 KERNEL_CONFIG := $(KERNEL_OUT)/.config
 MSM8226_DTS_NAMES := msm8226
 
