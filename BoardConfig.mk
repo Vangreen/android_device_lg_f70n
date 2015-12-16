@@ -23,8 +23,10 @@
 
 USE_CAMERA_STUB := false
 TARGET_NO_BOOTLOADER := true
+USE_HOST_LEX := yes
+PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
 
-TARGET_SPECIFIC_HEADER_PATH += device/lge/f70n/include
+TARGET_SPECIFIC_HEADER_PATH := device/lge/f70n/include
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/f70n
@@ -34,9 +36,6 @@ TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := device/lge/f70n/init/init_f70n.c
 TARGET_OTA_ASSERT_DEVICE := f70n
-TARGET_INCREMENTAL_OTA_VERBATIM_FILES := system/priv-app/OneTimeInitializer/OneTimeInitializer.apk,system/app/Provision/Provision.apk
-ART_USE_HSPACE_COMPACT := true
-MALLOC_IMPL := dlmalloc
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8226
@@ -50,19 +49,27 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_MEMCPY_BASE_OPT_DISABLE := true
 TARGET_CPU_VARIANT := krait
 
+ART_USE_HSPACE_COMPACT := true
+MALLOC_IMPL := dlmalloc
+
 TARGET_BOOTLOADER_BOARD_NAME := f70n
 
 # Kernel image
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_CUSTOM_BOOTIMG_MK := device/lge/f70n/mkbootimg.mk
-TARGET_KERNEL_SOURCE := kernel/lge/msm8226
+TARGET_KERNEL_SOURCE := kernel/lge/msm8x26
 TARGET_KERNEL_CONFIG := f70n_cm_defconfig
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 msm_rtb.filter=0x37 androidboot.hardware=w7 androidboot.selinux=enforcing
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 msm_rtb.filter=0x37 androidboot.hardware=f70n androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 # Offmode Charging
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+BOARD_HEALTHD_CUSTOM_CHARGER := device/lge/f70n/healthd/healthd_mode_charger.cpp
+BOARD_HEALTHD_CUSTOM_CHARGER_RES := device/lge/f70n/healthd/images
+
 COMMON_GLOBAL_CFLAGS += \
     -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' \
     -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
@@ -100,7 +107,7 @@ PROTOBUF_SUPPORTED := true
 TARGET_NO_RPC := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/w7/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/f70n/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
@@ -149,11 +156,9 @@ TW_INTERNAL_STORAGE_PATH := "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_SUPPRESS_EMMC_WIPE := true
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 HAVE_SELINUX := true
 BOARD_HAS_NO_MISC_PARTITION := true
@@ -165,9 +170,6 @@ USE_MINIKIN := true
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
-# Use HW crypto for ODE
-TARGET_HW_DISK_ENCRYPTION := true
-
 # Nfc
 BOARD_NFC_CHIPSET := pn547
 
@@ -177,3 +179,6 @@ include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
         device/lge/f70n/sepolicy
+
+# BOARD_SEPOLICY_UNION += \
+#	timekeep.te
