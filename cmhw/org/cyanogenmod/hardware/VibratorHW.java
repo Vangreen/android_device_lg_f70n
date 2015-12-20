@@ -22,7 +22,7 @@ import java.io.File;
 
 public class VibratorHW {
 
-    private static String AMP_PATH = "/sys/devices/virtual/timed_output/vibrator/vtg_level";
+    private static String AMP_PATH = "/sys/devices/platform/tspdrv/nforce_timed";
 
     public static boolean isSupported() {
         File file = new File(AMP_PATH);
