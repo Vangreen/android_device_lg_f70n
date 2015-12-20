@@ -1,0 +1,21 @@
+
+[
+  {
+    "remote": "omnirom",
+    "repository": "android_device_qcom_common",
+    "target_path": "device/qcom/common",
+    "revision": "android-5.1"
+  },
+  {
+    "remote": "omnirom",
+    "repository": "android_hardware_qcom_fm",
+    "target_path": "hardware/qcom/fm",
+    "revision": "android-5.1"
+  },
+  {
+    "remote": "omnirom",
+    "repository": "android_device_qcom_sepolicy",
+    "target_path": "device/qcom/sepolicy",
+    "revision": "android-5.1"
+  }
+]
