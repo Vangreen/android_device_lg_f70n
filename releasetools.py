@@ -16,16 +16,11 @@
 import os
 
 TARGET_DIR = os.getenv('OUT')
-def InstallEnd_SetSpecificDeviceConfigs(self):
+
+def FullOTA_InstallEnd(self):
   self.output_zip.write(os.path.join(TARGET_DIR, "fixup.sh"), "fixup.sh")
   self.script.AppendExtra('package_extract_file("fixup.sh", "/tmp/fixup.sh");')
   self.script.AppendExtra('set_metadata("/tmp/fixup.sh", "uid", 0, "gid", 0, "mode", 0755);')
   self.script.Mount("/system")
   self.script.AppendExtra('run_program("/tmp/fixup.sh");')
-
-def FullOTA_InstallEnd(self):
-  InstallEnd_SetSpecificDeviceConfigs(self)
-
-def IncrementalOTA_InstallEnd(self):
-  InstallEnd_SetSpecificDeviceConfigs(self)
-
+  self.script.Unmount("/system");
