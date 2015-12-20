@@ -21,5 +21,5 @@
 # function: add_lunch_combo generic-eng
 
 #dd_lunch_combo full_mb526-eng
-add_lunch_combo cm_f70n-userdebug
+add_lunch_combo omni_f70n-userdebug
 
