@@ -26,7 +26,7 @@ TARGET_NO_BOOTLOADER := true
 USE_HOST_LEX := yes
 PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
 
-TARGET_SPECIFIC_HEADER_PATH := device/lge/f70n/include
+TARGET_SPECIFIC_HEADER_PATH += device/lge/f70n/include
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/f70n
@@ -180,5 +180,5 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
         device/lge/f70n/sepolicy
 
-# BOARD_SEPOLICY_UNION += \
-#	timekeep.te
+BOARD_SEPOLICY_UNION += \
+	timekeep.te
