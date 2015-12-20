@@ -1,4 +1,4 @@
-#
+
 # Copyright (C) 2013 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+#$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
@@ -66,8 +66,7 @@ PRODUCT_COPY_FILES += \
     device/lge/f70n/prebuilt/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/lge/f70n/prebuilt/etc/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf \
     device/lge/f70n/prebuilt/usr/idc/touch_dev.idc:system/usr/idc/touch_dev.idc \
-    device/lge/f70n/prebuilt/usr/keylayout/Generic-D4x5.kl:system/usr/keylayout/Generic-D4x5.kl \
-    device/lge/f70n/prebuilt/usr/keylayout/Generic-D410.kl:system/usr/keylayout/Generic-D410.kl \
+    device/lge/f70n/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
     device/lge/f70n/prebuilt/etc/init.zetaw.bt.sh:system/etc/init.zetaw.bt.sh \
     device/lge/f70n/prebuilt/etc/msap.conf:system/etc/msap.conf \
     device/lge/f70n/prebuilt/etc/clatd.conf:system/etc/clatd.conf \
@@ -88,10 +87,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/lge/f70n/rootdir/fstab.f70n:root/fstab.f70n \
     device/lge/f70n/rootdir/init.f70n.rc:root/init.f70n.rc \
-    device/lge/f70n/rootdir/init.f70n.rc:root/init.f70n.rc \
+    device/lge/f70n/rootdir/init.baseband.sh:root/init.baseband.sh \
     device/lge/f70n/rootdir/init.f70n.usb.rc:root/init.f70n.usb.rc \
-    device/lge/f70n/rootdir/ueventd.f70n.rc:root/ueventd.f70n.rc \
-    device/lge/f70n/rootdir/init.baseband.sh:root/init.baseband.sh
+    device/lge/f70n/rootdir/ueventd.f70n.rc:root/ueventd.f70n.rc
 
 # OTA
 PRODUCT_COPY_FILES += \
@@ -149,10 +147,6 @@ PRODUCT_PACKAGES += \
 # Keyhandler
 PRODUCT_PACKAGES += \
     com.cyanogenmod.keyhandler
-
-# Keystore
-#PRODUCT_PACKAGES += \
-#    keystore.msm8226
 
 # Crda
 PRODUCT_PACKAGES += \
@@ -277,6 +271,11 @@ PRODUCT_PACKAGES += \
     hostapd_default.conf \
     libnetcmdiface
 
+# Sony timekeep
+PRODUCT_PACKAGES += \
+    timekeep \
+    TimeKeep
+
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
     qcom.bt.le_dev_pwr_class=1 \
@@ -306,13 +305,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.smoothstreaming=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.calfile0=/etc/Bluetooth_cal.acdb \
-    persist.audio.calfile1=/etc/General_cal.acdb \
-    persist.audio.calfile2=/etc/Global_cal.acdb \
-    persist.audio.calfile3=/etc/Handset_cal.acdb \
-    persist.audio.calfile4=/etc/Hdmi_cal.acdb \
-    persist.audio.calfile5=/etc/Headset_cal.acdb \
-    persist.audio.calfile6=/etc/Speaker_cal.acdb
+    persist.audio.calfile0=/etc/acdbdata/Bluetooth_cal.acdb \
+    persist.audio.calfile1=/etc/acdbdata/General_cal.acdb \
+    persist.audio.calfile2=/etc/acdbdata/Global_cal.acdb \
+    persist.audio.calfile3=/etc/acdbdata/Handset_cal.acdb \
+    persist.audio.calfile4=/etc/acdbdata/Hdmi_cal.acdb \
+    persist.audio.calfile5=/etc/acdbdata/Headset_cal.acdb \
+    persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.voicecall=true \
@@ -325,10 +324,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     use.voice.path.for.pcm.voip=true
-
-# IO Scheduler
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.io.scheduler=bfq
 
 # Radio and Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -360,12 +355,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ksm.default=1
 
-# CmUpdater
-PRODUCT_PROPERTY_OVERRIDES += \
-    cm.updater.uri=http://api.quarx.cm-for.us/api
-
 # Screen density
-PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 $(call inherit-product, vendor/lge/f70n/f70n-vendor.mk)
