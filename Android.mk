@@ -19,4 +19,11 @@ LOCAL_PATH := $(call my-dir)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
+include $(CLEAR_VARS)
+
+# Symlink chromium library
+$(shell mkdir -p $(TARGET_OUT)/app/webview/lib/arm; \
+	ln -s /system/lib/libwebviewchromium.so \
+		$(TARGET_OUT)/app/webview/lib/arm/libwebviewchromium.so)
+
 endif
