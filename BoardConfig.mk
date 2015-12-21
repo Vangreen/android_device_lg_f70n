@@ -162,7 +162,11 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 RECOVERY_SDCARD_ON_DATA := true
 HAVE_SELINUX := true
 BOARD_HAS_NO_MISC_PARTITION := true
-TARGET_RECOVERY_QCOM_RTC_FIX := true
+ +#TW_NEVER_UNMOUNT_SYSTEM := true
+ +TW_NO_REBOOT_BOOTLOADER := true
+ +TW_CUSTOM_POWER_BUTTON := 116
+ +#TWRP_EVENT_LOGGING := true
+  TARGET_RECOVERY_QCOM_RTC_FIX := true
 
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
