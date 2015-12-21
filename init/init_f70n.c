@@ -101,7 +101,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("persist.radio.multisim.config", "");
 	property_set("ro.telephony.hidelte", "0");
 	
-   } else if (strncmp(serial, "LGD620", 6) == 0) {
+   } else if (strncmp(serial, "LGD315", 6) == 0) {
         /* D315 */
 	property_set("ro.product.model", "LG-D315");
 	property_set("ro.product.device", "f70n");
