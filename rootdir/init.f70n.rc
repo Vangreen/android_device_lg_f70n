@@ -24,20 +24,32 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
- 
+
 import init.f70n.usb.rc
-
-on early-init
-    export LD_PRELOAD "/system/lib/libboringssl-compat.so"
-
 on init
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /storage/sdcard1 0775 system system
 
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
+    export EXTERNAL_STORAGE /storage/emulated/legacy
+    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    export EMULATED_STORAGE_TARGET /storage/emulated
+    export SECONDARY_STORAGE /storage/sdcard1
+
+    # for backwards compatibility
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+    symlink /storage/sdcard1 /mnt/external_sd
+    symlink /storage/sdcard1 /external_sd
 
     # NFC fix
     symlink /dev/pn547 /dev/pn544
+
+    # We use our own ril-daemon service definition, see mmi-ril-daemon
+    stop ril-daemon
 
 on post-fs
     chmod 664 /sys/devices/virtual/input/lge_touch/touch_gesture
@@ -50,8 +62,6 @@ on post-fs
     chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
     chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
     chown system system /sys/devices/virtual/input/lge_touch/lpwg_notify
-    chmod 664 /sys/devices/virtual/input/lge_touch/dt2w_enable
-    chown system system /sys/devices/virtual/input/lge_touch/dt2w_enable
     chmod 664 /sys/devices/virtual/input/lge_touch/incoming_call
     chown system system /sys/devices/virtual/input/lge_touch/incoming_call
     chmod 664 /sys/devices/virtual/input/lge_touch/lockscreen
@@ -83,9 +93,6 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
- 
-    #Create NETMGR daemon socket area
-    mkdir /dev/socket/netmgr 0750 radio radio
 
     # Subsytem Restart
     #adsp
@@ -106,10 +113,6 @@ on boot
     chmod 775 /data/misc/sensors
     mkdir /persist/sensors
     chmod 775 /persist/sensors
-
-    # For setting tcp delayed ack
-    chown system system /sys/kernel/ipv4/tcp_delack_seg
-    chown system system /sys/kernel/ipv4/tcp_use_userconfig
 
 #   Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
@@ -198,7 +201,6 @@ on fs
     mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
 
 on post-fs-data
-
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -237,12 +239,6 @@ on post-fs-data
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
     chmod 0771 /persist
-    # fix sensor daenon
-    mkdir /persist/sensors 0775 system root
-    write /persist/sensors/sensors_settings 1
-    chmod 0644 /persist/sensors/sensors_settings
-    chown system root /persist/sensors/sensors_settings
-
     chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
@@ -297,9 +293,6 @@ on post-fs-data
     mkdir /data/system 0775 system system
     #symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant
 
-    # Create /data/time folder for time-services
-    mkdir /data/time/ 0700 system system
-
     #Create directories for wiper services
     mkdir /data/wpstiles/ 0755 shell
     mkdir /data/wiper 0755 gps qcom_oncrpc
@@ -324,8 +317,25 @@ on post-fs-data
     #Create a folder for SRS to be able to create a usercfg file
     mkdir /data/data/media 0770 media media
 
+    # Create file to enable sensors on boot
+    mkdir /persist/sensors 0775 system root
+    write /persist/sensors/sensors_settings 1
+    chmod 0644 /persist/sensors/sensors_settings
+    chown system root /persist/sensors/sensors_settings
+
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
+
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+    class late_start
+    
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk /storage/usbdisk
+    class late_start
+    disabled
 
 service lg-baseband /system/bin/sh /init.baseband.sh
     class late_start
@@ -461,27 +471,17 @@ on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
-service_redefine ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket rild-debug stream 660 radio system
-    socket cutback stream 660 media radio
-    user root
-    group radio cache inet misc audio sdcard_rw qcom_oncrpc qcom_diag log net_raw diag
+on property:persist.radio.multisim.config=dsds
+    stop ril-daemon
+    start ril-daemon2
 
-service ril-daemon1 /system/bin/rild -c 2
+service ril-daemon2 /system/bin/rild -c 2
     class main
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user root
-    group radio cache inet misc audio sdcard_rw qcom_oncrpc qcom_diag log net_raw diag
     disabled
-
-service rild1-wrapper /system/bin/sh /system/etc/init.qcom.ril.sh
-    class late_start
-    user root
-    group root
-    oneshot
+    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log net_raw
 
 on property:ro.bootmode=chargerlogo
     class_reset main
@@ -493,8 +493,9 @@ service loc_launcher /system/bin/loc_launcher
     class late_start
     group gps qcom_oncrpc inet net_raw qcom_diag net_admin wifi
 
+
 service qseecomd /system/bin/qseecomd
-    class late_start
+    class core
     user root
     group root
 
@@ -503,13 +504,6 @@ service bdaddr_loader /system/bin/bdaddr_loader
     group bluetooth net_bt_admin misc net_bt_stack
     disabled
     oneshot
-
-#service irrcServer /system/bin/irrcServer
-#   class main
-#   user media
-#   group media
-#   onrestart restart irrcServer
-#   disabled
 
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
@@ -521,27 +515,26 @@ on property:init.svc.media=restarting
 on property:init.svc.servicemanager=restarting
     restart qcamerasvr
 
-service time_daemon /system/bin/time_daemon
-   class late_start
-   user root
-   group roo
+service timekeep /system/bin/timekeep restore
+    class late_start
+    user root
+    group root
+    oneshot
+    seclabel u:r:timekeep:s0
 
 service mpdecision /system/bin/mpdecision --avg_comp
    class main
    user root
    group system
 
-
-service thermal-engine /system/vendor/bin/thermal-engine
+service thermal-engine /system/bin/thermal-engine
    class main
    user root
    group root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
 
 service charger /sbin/healthd -c
     class charger
+    critical
     seclabel u:r:healthd:s0
 
 service adsprpcd /system/bin/adsprpcd
@@ -555,6 +548,14 @@ service wcnss-service /system/bin/wcnss_service
    group system wifi
    oneshot
 
+service mmi-ril-daemon /system/bin/rild
+    class main
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    socket cutback stream 660 media radio
+    user root
+    group radio cache inet misc audio sdcard_rw qcom_oncrpc qcom_diag log net_raw diag
+
 service config_bluetooth /system/bin/sh /system/etc/init.zetaw.bt.sh "onboot"
     class core
     user root
@@ -565,6 +566,8 @@ on charger
     wait /dev/block/platform/msm_sdcc.1/by-name/system
     mount ext4 /dev/block/platform/msm_sdcc.1/by-name/system /system ro barrier=1
     start rmt_storage
+
+# Setup kernel configurations on boot
 
     write /sys/module/lpm_levels/enable_low_power/l2 1
     write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1
@@ -602,8 +605,11 @@ on charger
 on property:init.svc.bootanim=running
     # Switch to performance mode while booting
     setprop sys.perf.profile 2
+    # Switch to NOOP while booting
+    write /sys/block/mmcblk0/queue/scheduler noop
 
 on property:sys.boot_completed=1
+    write /sys/block/mmcblk0/queue/scheduler fiops
     write /sys/module/lpm_levels/enable_low_power/l2 4
     write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1
     write /sys/module/msm_pm/modes/cpu1/power_collapse/suspend_enabled 1
@@ -625,37 +631,50 @@ on property:sys.boot_completed=1
     write /sys/module/msm_pm/modes/cpu1/retention/idle_enabled 1
     write /sys/module/msm_pm/modes/cpu2/retention/idle_enabled 1
     write /sys/module/msm_pm/modes/cpu3/retention/idle_enabled 1
+
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 300000
+
     chown root system /sys/devices/system/cpu/cpu1/online
     chown root system /sys/devices/system/cpu/cpu2/online
     chown root system /sys/devices/system/cpu/cpu3/online
     chmod 0664 /sys/devices/system/cpu/cpu1/online
     chmod 0664 /sys/devices/system/cpu/cpu2/online
     chmod 0664 /sys/devices/system/cpu/cpu3/online
-    start mpdecision
 
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user system
-    group system
-    disabled
-    oneshot
+    # -L.E.K.- parameters
+    # GPU
+    write /sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
+    write /sys/module/simple_gpu_algorithm/parameters/simple_gpu_activate 1
+    write /sys/module/simple_gpu_algorithm/parameters/simple_ramp_threshold 3000
+    write /sys/module/simple_gpu_algorithm/parameters/simple_laziness 4
 
-###### This is for CAF ########
-# Configure IO scheduler
-on property:sys.io.scheduler=*
-    write /sys/block/mmcblk0/queue/scheduler ${sys.io.scheduler}
+    # HOTPLUG (Intelli_plug)
+    stop mpdecision
+    write /sys/module/intelli_plug/parameters/intelli_plug_active 1
+    write /sys/module/intelli_plug/parameters/nr_run_profile_sel 0
+    write /sys/module/intelli_plug/parameters/nr_run_hysteresis 5
+    write /sys/module/intelli_plug/parameters/cpu_nr_run_threshold 250
+    write /sys/module/intelli_plug/parameters/screen_off_max 384000
 
-on property:persist.sys.io.scheduler=*
-    setprop sys.io.scheduler ${persist.sys.io.scheduler}
+    # I/O Sheduler
+    write /sys/block/mmcblk0/queue/read_ahead_kb 512
+    write /sys/block/mmcblk1/queue/read_ahead_kb 512
 
-# Set slice_idle to 0 for CFQ
-on property:sys.io.scheduler=cfq
-    write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+   # Low Memory Killer (Light)
+    write /sys/module/lowmemorykiller/parameters/minfree "1024,2048,2560,4096,6144,8192"
 
-# Set slice_idle to 0 for BFQ
-on property:sys.io.scheduler=bfq
-    write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+    # Entropy
+    write /proc/sys/kernel/random/read_wakeup_threshold 256
+    write /proc/sys/kernel/random/write_wakeup_threshold 512
+
+    # Vibration (75%)
+    write /sys/devices/platform/tspdrv/nforce_timed 95
+
+   # FSync
+   write /sys/kernel/dyn_fsync/Dyn_fsync_active 1
+
+    # Power suspend mode (Hybrid)
+    write /sys/kernel/power_suspend/power_suspend_mode 3
