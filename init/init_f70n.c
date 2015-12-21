@@ -75,33 +75,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     UNUSED(board_type);
 
     property_get("ro.boot.serialno", serial);
-    if (strncmp(serial, "LGD618", 6) == 0) {
-        /* D618 */
-        property_set("ro.product.device", "g2mds");
-        property_set("ro.product.model", "LG-D618");
-        property_set("ro.build.description", "g2mds_global_com-user 5.1.1 LMY48Y 151391007575d release-keys");
-        property_set("ro.build.fingerprint", "lge/g2mds_global_com/g2mds:5.1.1/LMY48Y/151391007575d:user/release-keys");
-        property_set("persist.radio.multisim.config", "dsds");
-	property_set("ro.telephony.hidelte", "1");
-    } else if (strncmp(serial, "LGD610", 6) == 0) {
-        /* D610 */
-	property_set("ro.product.model", "LG-D610");
-	property_set("ro.product.device", "g2mss");
-        property_set("ro.build.description", "g2mss_global_com-user 5.1.1 LMY48Y 151391007575d release-keys");
-        property_set("ro.build.fingerprint", "lge/g2mss_global_com/g2mss:5.1.1/LMY48Y/151391007575d:user/release-keys");
-        property_set("persist.radio.multisim.config", "");
-	property_set("ro.telephony.hidelte", "1");
-   } else if (strncmp(serial, "LGD620", 6) == 0) {
-        /* D620 */
-	property_set("ro.product.model", "LG-D620");
-	property_set("ro.product.device", "g2m");
-	property_set("ro.nfc.port", "I2C");
-        property_set("ro.build.description", "g2m_global_com-user 5.1.1 LMY48Y 151391007575d release-keys");
-        property_set("ro.build.fingerprint", "lge/g2m_global_com/g2m:5.1.1/LMY48Y/151391007575d:user/release-keys");
-        property_set("persist.radio.multisim.config", "");
-	property_set("ro.telephony.hidelte", "0");
-	
-   } else if (strncmp(serial, "LGD315", 6) == 0) {
+    if  (strncmp(serial, "LGD315", 6) == 0) {
         /* D315 */
 	property_set("ro.product.model", "LG-D315");
 	property_set("ro.product.device", "f70n");
