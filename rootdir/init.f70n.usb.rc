@@ -117,3 +117,4 @@ on property:sys.usb.config=charging
     write /sys/class/android_usb/android0/functions charge_only
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
+
