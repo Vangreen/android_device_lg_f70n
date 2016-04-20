@@ -16,7 +16,7 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, device/lge/g2m/device_f70n.mk)
+$(call inherit-product, device/lge/f70n/device_f70n.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := f70n
