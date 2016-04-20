@@ -13,10 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-ifeq ($(TARGET_BOARD_PLATFORM),msm8226)
 
 LOC_PATH := $(call my-dir)
 
 include $(call first-makefiles-under,$(LOC_PATH))
 
-endif
